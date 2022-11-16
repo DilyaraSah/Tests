@@ -20,33 +20,61 @@ public class NoteHelper:HelperBase
     {
     }
     
-    public NoteData GetCreatedNoteData()
+    public void AddNote()
     {
-        string idName = driver.FindElement(By.ClassName("notes-cont.ed-0.ng-class:{'fullscreen':item.modeFullscreen}")).GetAttribute("id");
-        return new NoteData(idName);
+        //driver.Navigate().GoToUrl("https://www.bumajko.ru/#!/note/0/0/0/");
+        driver.FindElement(By.XPath("//div[@id='block-top']/div/div/a[7]")).Click();
     }
 
-    public void SelectLastCSelectLastCreatedNote()
+    public void CreateNote(NoteData noteData)
     {
-        IList<IWebElement> elements = driver.FindElements(By.CssSelector("[class='notes-cont ed-0 ng-class:{'fullscreen':item.modeFullscreen}']"));
-        string[] values = new string[elements.Count];
-        for (int i = 0; i < elements.Count; i++)
-        {
-            values[i] = elements[i].GetAttribute("id");
-        }
-        string str = "[id='" + values[elements.Count - 1] + "']";
-        driver.FindElement(By.CssSelector(str)).Click();
+        AddNote();
+        ChangeLastNote(noteData.Content);
+    }
+    
+    public void ChangeLastNote(string keys)
+    {
+        string path = manager.Select.GetLastNoteData();
+        var el = ReturnLastNote();
+        el.Click();
+        el.FindElement(By.CssSelector(".full")).SendKeys(keys);
+        el.FindElement(By.CssSelector(".full")).SendKeys(Keys.Enter);
     }
 
     public string GetLastNoteData()
     {
-        IList<IWebElement> elements = driver.FindElements(By.CssSelector("[class='notes-cont ed-0 ng-class:{'fullscreen':item.modeFullscreen}']"));
+        IList<IWebElement> elements = driver.FindElements(By.CssSelector(".notes-cont"));
+        string[] values = new string[elements.Count];
+        /*for (int i = 0; i < elements.Count; i++)
+        {
+            values[i] = elements[i].GetAttribute("id");
+        }
+        string str = values[elements.Count - 1];
+        */
+        string str = elements[elements.Count - 1].GetAttribute("id");
+        return str;
+    }
+
+    public IWebElement ReturnLastNote()
+    {
+        var webElement = driver.FindElement(By.CssSelector("#"+ GetLastNoteData()));
+        return webElement;
+    }
+    
+    public void DeleteNote()
+    {
+        IList<IWebElement> elements = driver.FindElements(By.CssSelector("[note-data='n']"));
         string[] values = new string[elements.Count];
         for (int i = 0; i < elements.Count; i++)
         {
             values[i] = elements[i].GetAttribute("id");
         }
-        string str = values[elements.Count - 1];
-        return str;
+        
+        string str = "[id='" + values[elements.Count - 1] + "']";
+        var temp = driver.FindElement(By.CssSelector(str));
+        
+        driver.FindElement(By.CssSelector(str)).FindElement(By.CssSelector("[class='cmd-delete note-btn delete_img']")).Click();
+        driver.FindElement(By.XPath("//div[@id='" + values[elements.Count - 1] + "']/div[3]/a")).Click();
+        
     }
 }

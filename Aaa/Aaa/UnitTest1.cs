@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.IO;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading;
@@ -7,6 +9,7 @@ using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Support.UI;
 using System.Threading;
+using System.Xml.Serialization;
 
 namespace Aaa
 {
@@ -15,20 +18,28 @@ namespace Aaa
     {
         AccountData user = new AccountData("admin", "secret");
 
-        [Test]
-        public void TheUntitledTestCaseTest()
+        XmlSerializer xmlSerializer = new XmlSerializer(typeof(NoteData));
+    
+        public static IEnumerable<NoteData> NoteFromXmlFile()
         {
+            return (List<NoteData>) new XmlSerializer(typeof(List<NoteData>))
+                .Deserialize(new FileStream(@"C:\Users\Владислава\Desktop\note.xml", FileMode.OpenOrCreate));
+        }
+        
+        
+        [Test, TestCaseSource("NoteFromXmlFile")]
+        public void TheUntitledTestCaseTest(NoteData noteData)
+        {
+            Thread.Sleep(1000);
             app.Navigation.OpenHomePage();
-            Assert.That(app.driver.Url, Is.EqualTo("https://www.bumajko.ru/#!/note/0/0/0/"));
             app.Auth.Login(user);
-            /*Thread.Sleep(1000);
-            app.Adding.AddNote();
             Thread.Sleep(1000);
-            app.Select.SelectLastCSelectLastCreatedNote();
+            /**/
+            app.Navigation.OpenHomePage();
+            app.Select.AddNote();
             Thread.Sleep(1000);
-            app.Delete.DeleteNote();
-            Thread.Sleep(1000);*/
-            app.Adding.ChangeContent();
+            app.Select.ChangeLastNote(noteData.Content);
+            Thread.Sleep(1000);
             app.Stop();
             
             

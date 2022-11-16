@@ -1354,19 +1354,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\sahib\\.nuget\\packages\\": {}
+    "C:\\Users\\Владислава\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\ИТИС\\3 КУРС\\Тестирование\\Aaa\\Serialized\\Serialized.csproj",
+      "projectUniqueName": "C:\\Users\\Владислава\\RiderProjects\\Tests\\DilyasTests\\Aaa\\Serialized\\Serialized.csproj",
       "projectName": "Serialized",
-      "projectPath": "D:\\ИТИС\\3 КУРС\\Тестирование\\Aaa\\Serialized\\Serialized.csproj",
-      "packagesPath": "C:\\Users\\sahib\\.nuget\\packages\\",
-      "outputPath": "D:\\ИТИС\\3 КУРС\\Тестирование\\Aaa\\Serialized\\obj\\",
+      "projectPath": "C:\\Users\\Владислава\\RiderProjects\\Tests\\DilyasTests\\Aaa\\Serialized\\Serialized.csproj",
+      "packagesPath": "C:\\Users\\Владислава\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Владислава\\RiderProjects\\Tests\\DilyasTests\\Aaa\\Serialized\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\sahib\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Владислава\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -1380,8 +1380,8 @@
         "net6.0": {
           "targetAlias": "net6.0",
           "projectReferences": {
-            "D:\\ИТИС\\3 КУРС\\Тестирование\\Aaa\\Aaa\\Aaa.csproj": {
-              "projectPath": "D:\\ИТИС\\3 КУРС\\Тестирование\\Aaa\\Aaa\\Aaa.csproj"
+            "C:\\Users\\Владислава\\RiderProjects\\Tests\\DilyasTests\\Aaa\\Aaa\\Aaa.csproj": {
+              "projectPath": "C:\\Users\\Владислава\\RiderProjects\\Tests\\DilyasTests\\Aaa\\Aaa\\Aaa.csproj"
             }
           }
         }
@@ -1405,12 +1405,26 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
+        "downloadDependencies": [
+          {
+            "name": "Microsoft.AspNetCore.App.Ref",
+            "version": "[6.0.0, 6.0.0]"
+          },
+          {
+            "name": "Microsoft.NETCore.App.Ref",
+            "version": "[6.0.0, 6.0.0]"
+          },
+          {
+            "name": "Microsoft.WindowsDesktop.App.Ref",
+            "version": "[6.0.0, 6.0.0]"
+          }
+        ],
         "frameworkReferences": {
           "Microsoft.NETCore.App": {
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.200\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.100-preview.2.22153.17\\RuntimeIdentifierGraph.json"
       }
     }
   }

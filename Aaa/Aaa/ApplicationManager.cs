@@ -19,8 +19,6 @@ public class ApplicationManager
 
     private NavigationHelper navigation;
     private LoginHelper auth;
-    private AddingHelper adding;
-    private DeleteHelper delete;
     private NoteHelper select;
     
     ~ApplicationManager()
@@ -37,13 +35,11 @@ public class ApplicationManager
 
     private ApplicationManager()
     {
-        driver = new ChromeDriver("D:\\Program Files");
+        driver = new ChromeDriver();
         baseURL = "https://www.google.com/";
         verificationErrors = new StringBuilder();
-        adding = new AddingHelper(this);
         auth = new LoginHelper(this);
         navigation = new NavigationHelper(this, baseURL);
-        delete = new DeleteHelper(this);
         select = new NoteHelper(this);
     }
     
@@ -73,16 +69,7 @@ public class ApplicationManager
     {
         get { return auth; }
     }
-
-    public AddingHelper Adding
-    {
-        get { return adding; }
-    }
     
-    public DeleteHelper Delete
-    {
-        get { return delete; }
-    }
     
     public NoteHelper Select
     {
