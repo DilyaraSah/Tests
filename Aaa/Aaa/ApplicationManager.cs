@@ -36,7 +36,7 @@ public class ApplicationManager
     private ApplicationManager()
     {
         driver = new ChromeDriver();
-        baseURL = "https://www.google.com/";
+        baseURL = Settings.BaseURL;
         verificationErrors = new StringBuilder();
         auth = new LoginHelper(this);
         navigation = new NavigationHelper(this, baseURL);

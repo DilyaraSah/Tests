@@ -21,6 +21,6 @@ public class NavigationHelper:HelperBase
 
     public void OpenHomePage()
     {
-        driver.Navigate().GoToUrl("https://www.bumajko.ru/#!/note/0/0/0/");
+        driver.Navigate().GoToUrl("https://www.bumajko.ru/");
     }
 }

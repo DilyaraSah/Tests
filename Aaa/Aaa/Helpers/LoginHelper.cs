@@ -17,8 +17,15 @@ public class LoginHelper:HelperBase
     {
     }
 
+    public AccountData userData = new AccountData(Settings.Email, Settings.Password);
+    public AccountData user2 = new AccountData("sahibdila@gmail.com", "12345kikiki");
+    
     public void Login(AccountData user)
     {
+        if (IsLoggedIn())
+        {
+            return;
+        }
         driver.FindElement(By.Id("txtLogin")).Click();
         driver.FindElement(By.Id("txtLogin")).Clear();
         driver.FindElement(By.Id("txtLogin")).SendKeys("sahibdila@mail.ru");
@@ -26,5 +33,24 @@ public class LoginHelper:HelperBase
         driver.FindElement(By.Id("txtPassword")).Clear();
         driver.FindElement(By.Id("txtPassword")).SendKeys("kikiki237");
         driver.FindElement(By.LinkText("Вход")).Click();
+    }
+
+    public void Logout()
+    {
+        driver.FindElement(By.CssSelector("#mLogoff"));
+    }
+    
+    public bool IsLoggedIn()
+    {
+        try
+        {
+            driver.FindElement(By.CssSelector("#mLogoff"));
+        }
+        catch (Exception e)
+        {
+            Console.WriteLine(e);
+            return false;
+        }
+        return true;
     }
 }

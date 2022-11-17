@@ -22,8 +22,9 @@ public class NoteHelper:HelperBase
     
     public void AddNote()
     {
-        //driver.Navigate().GoToUrl("https://www.bumajko.ru/#!/note/0/0/0/");
-        driver.FindElement(By.XPath("//div[@id='block-top']/div/div/a[7]")).Click();
+        driver.Navigate().GoToUrl("https://www.bumajko.ru/#!/note/0/0/0/");
+        driver.FindElement(By.CssSelector("#block-top > div.notes-row.top-border > div > a:nth-child(8)"));
+        //driver.FindElement(By.XPath("//div[@id='block-top']/div/div/a[7]")).Click();
     }
 
     public void CreateNote(NoteData noteData)
@@ -45,12 +46,7 @@ public class NoteHelper:HelperBase
     {
         IList<IWebElement> elements = driver.FindElements(By.CssSelector(".notes-cont"));
         string[] values = new string[elements.Count];
-        /*for (int i = 0; i < elements.Count; i++)
-        {
-            values[i] = elements[i].GetAttribute("id");
-        }
-        string str = values[elements.Count - 1];
-        */
+        Thread.Sleep(3000);
         string str = elements[elements.Count - 1].GetAttribute("id");
         return str;
     }
